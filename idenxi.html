@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>设计师@小智 — 个人简历</title>
+<style>
+  /* ========== RESET & BASE ========== */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --yellow:  #FFD700;
+    --orange:  #FF6B35;
+    --red:     #FF3B3B;
+    --blue:    #3366FF;
+    --cyan:    #00D4AA;
+    --pink:    #FF6B9D;
+    --purple:  #8B5CF6;
+    --green:   #22C55E;
+    --black:   #1A1A1A;
+    --white:   #FEFEFE;
+    --gray:    #F0F0F0;
+    --border:  3px;
+    --shadow:  6px;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #F5F0EB;
+    color: var(--black);
+    padding: 24px;
+    min-height: 100vh;
+    /* Subtle dot pattern */
+    background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* ========== MAIN CONTAINER ========== */
+  .resume {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 80px;
+  }
+
+  /* ========== NEOBRUTALISM CARD ========== */
+  .neo-card {
+    background: var(--white);
+    border: var(--border) solid var(--black);
+    box-shadow: var(--shadow) var(--shadow) 0 0 var(--black);
+    padding: 28px 32px;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .neo-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 0 var(--black);
+  }
+
+  /* ========== HERO HEADER ========== */
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
+    border: var(--border) solid var(--black);
+    box-shadow: var(--shadow) var(--shadow) 0 0 var(--black);
+    border-radius: 50%;
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 72px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px dashed var(--black);
+    pointer-events: none;
+  }
+
+  .hero-info {
+    flex: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-weight: 900;
+    font-size: 14px;
+    padding: 4px 14px;
+    border: var(--border) solid var(--black);
+    box-shadow: 3px 3px 0 0 var(--black);
+    margin-bottom: 10px;
+  }
+  .hero-name {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 2px;
+  }
+  .hero-name .at {
+    color: var(--blue);
+  }
+  .hero-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 4px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-title .year-tag {
+    background: var(--black);
+    color: var(--yellow);
+    font-size: 14px;
+    font-weight: 900;
+    padding: 2px 10px;
+    border: var(--border) solid var(--black);
+    display: inline-block;
+  }
+
+  /* ========== COLOR ACCENT STRIPS ========== */
+  .accent-strip {
+    height: 10px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--yellow) 0px,   var(--yellow) 40px,
+      var(--red)    40px,  var(--red) 80px,
+      var(--blue)   80px,  var(--blue) 120px,
+      var(--cyan)   120px, var(--cyan) 160px,
+      var(--pink)   160px, var(--pink) 200px
+    );
+    border-left: var(--border) solid var(--black);
+    border-right: var(--border) solid var(--black);
+    border-bottom: var(--border) solid var(--black);
+    box-shadow: var(--shadow) var(--shadow) 0 0 var(--black);
+    margin-top: -4px;
+  }
+
+  /* ========== SECTION TITLES ========== */
+  .section-title {
+    font-size: 26px;
+    font-weight: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 4px solid var(--black);
+    letter-spacing: 1px;
+  }
+  .section-title .icon {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border: var(--border) solid var(--black);
+    box-shadow: 3px 3px 0 0 var(--black);
+    font-size: 22px;
+    background: var(--yellow);
+  }
+
+  /* ========== CONTACT STRIP ========== */
+  .contact-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .contact-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 6px 16px;
+    border: var(--border) solid var(--black);
+    box-shadow: 3px 3px 0 0 var(--black);
+    background: var(--gray);
+  }
+  .contact-chip:nth-child(1) { background: var(--yellow); }
+  .contact-chip:nth-child(2) { background: var(--cyan); }
+  .contact-chip:nth-child(3) { background: var(--pink); color: #fff; }
+  .contact-chip:nth-child(4) { background: var(--blue); color: #fff; }
+
+  /* ========== SKILL BARS ========== */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .skill-label {
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .skill-bar-track {
+    height: 18px;
+    border: var(--border) solid var(--black);
+    background: var(--gray);
+    box-shadow: 3px 3px 0 0 var(--black);
+    position: relative;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: var(--green);
+    border-right: 2px solid var(--black);
+    transition: width 0.4s ease;
+  }
+  .skill-bar-fill.photoshop  { width: 98%; background: var(--blue); }
+  .skill-bar-fill.illustrator { width: 95%; background: var(--orange); }
+  .skill-bar-fill.indesign    { width: 90%; background: var(--pink); }
+  .skill-bar-fill.figma       { width: 92%; background: var(--purple); }
+  .skill-bar-fill.c4d         { width: 75%; background: var(--cyan); }
+  .skill-bar-fill.branding    { width: 96%; background: var(--red); }
+  .skill-bar-fill.uiux        { width: 85%; background: var(--green); }
+  .skill-bar-fill.team        { width: 88%; background: var(--yellow); }
+
+  /* ========== EXPERIENCE TIMELINE ========== */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--black);
+    border-radius: 3px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 21px;
+    height: 21px;
+    border: var(--border) solid var(--black);
+    box-shadow: 2px 2px 0 0 var(--black);
+    border-radius: 50%;
+    background: var(--yellow);
+    z-index: 1;
+  }
+  .timeline-item:nth-child(2) .timeline-dot { background: var(--orange); }
+  .timeline-item:nth-child(3) .timeline-dot { background: var(--blue); }
+  .timeline-item:nth-child(4) .timeline-dot { background: var(--pink); }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .exp-company {
+    font-size: 20px;
+    font-weight: 900;
+  }
+  .exp-period {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 3px 12px;
+    border: var(--border) solid var(--black);
+    box-shadow: 2px 2px 0 0 var(--black);
+    background: var(--gray);
+  }
+  .exp-role {
+    font-weight: 700;
+    color: #666;
+    font-size: 15px;
+    margin: 4px 0 8px;
+  }
+  .exp-details {
+    list-style: none;
+  }
+  .exp-details li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .exp-details li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 900;
+  }
+
+  /* ========== TAG CLOUD ========== */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .neo-tag {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 6px 16px;
+    border: var(--border) solid var(--black);
+    box-shadow: 3px 3px 0 0 var(--black);
+    background: var(--yellow);
+    transition: transform 0.1s;
+  }
+  .neo-tag:hover { transform: translate(-2px, -2px); }
+  .neo-tag:nth-child(2n)  { background: var(--cyan); }
+  .neo-tag:nth-child(3n)  { background: var(--pink); color: #fff; }
+  .neo-tag:nth-child(5n)  { background: var(--blue); color: #fff; }
+  .neo-tag:nth-child(7n)  { background: var(--orange); color: #fff; }
+
+  /* ========== PORTFOLIO CARDS ========== */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .portfolio-item {
+    border: var(--border) solid var(--black);
+    box-shadow: var(--shadow) var(--shadow) 0 0 var(--black);
+    overflow: hidden;
+    background: var(--white);
+    transition: transform 0.12s ease;
+  }
+  .portfolio-item:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0 0 var(--black);
+  }
+  .portfolio-thumb {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    border-bottom: var(--border) solid var(--black);
+  }
+  .portfolio-thumb.bg1 { background: #FFF3CD; }
+  .portfolio-thumb.bg2 { background: #D4F1F4; }
+  .portfolio-thumb.bg3 { background: #FFE0EC; }
+  .portfolio-thumb.bg4 { background: #E0D4FF; }
+  .portfolio-thumb.bg5 { background: #FFE0CC; }
+  .portfolio-thumb.bg6 { background: #D4F5E0; }
+
+  .portfolio-caption {
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    background: var(--white);
+  }
+
+  /* ========== QUOTE STRIP ========== */
+  .quote-block {
+    background: var(--yellow);
+    border: var(--border) solid var(--black);
+    box-shadow: var(--shadow) var(--shadow) 0 0 var(--black);
+    padding: 24px 32px;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.6;
+    position: relative;
+  }
+  .quote-block::before {
+    content: '“';
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    font-size: 64px;
+    line-height: 1;
+    opacity: 0.2;
+  }
+
+  /* ========== TWO-COLUMN LAYOUT ========== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer-note {
+    text-align: center;
+    font-weight: 900;
+    font-size: 18px;
+    padding: 20px;
+    background: var(--black);
+    color: var(--yellow);
+    border: var(--border) solid var(--black);
+    box-shadow: var(--shadow) var(--shadow) 0 0 var(--black);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-name { font-size: 36px; }
+    .skill-grid,
+    .two-col { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    body { padding: 12px; }
+    .neo-card { padding: 18px 16px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="resume">
+
+  <!-- ===== HERO HEADER ===== -->
+  <div class="neo-card hero">
+    <div class="hero-avatar">🎨</div>
+    <div class="hero-info">
+      <div class="hero-badge">🔴 在线接单</div>
+      <h1 class="hero-name">设计师<span class="at">@</span>小智</h1>
+      <p class="hero-title">
+        资深平面设计师
+        <span class="year-tag">16Y+</span>
+      </p>
+      <p style="margin-top:10px;font-size:15px;font-weight:700;color:#555;">
+        品牌视觉 · 印刷设计 · 数字媒体 · 团队管理
+      </p>
+    </div>
+  </div>
+  <div class="accent-strip"></div>
+
+  <!-- ===== CONTACT ===== -->
+  <div class="neo-card">
+    <div class="contact-strip">
+      <span class="contact-chip">📧 7793356607@qq.com</span>
+      <span class="contact-chip">📱 189-9094-9620</span>
+      <span class="contact-chip">📍 四川· 宜宾</span>
+      <span class="contact-chip">新锐AIGC小智设计 让效率起飞
+    </div>
+  </div>
+
+  <!-- ===== TWO-COLUMN: ABOUT + SKILLS ===== -->
+  <div class="two-col">
+    <!-- ABOUT -->
+    <div class="neo-card">
+      <div class="section-title">
+        <span class="icon">👋</span> 关于我
+      </div>
+      <p style="font-size:14px;line-height:1.8;">
+        拥有<strong>16年</strong>平面设计经验的视觉创作者，深耕品牌 VI、包装、线下活动物料、品牌主视觉全链路落地；
+        擅长将品牌策略转化为极具冲击力的视觉语言，对色彩、排版和构图有着近乎偏执的追求。
+        熟练SketchUp 完成产品、展台、小型场景简易建模渲染，输出品牌宣传效果图；<strong style="background:var(--yellow);padding:1px 6px;">200+</strong>，
+        精通 AIGC 商业落地，依托 AI 快速生成品牌创意初稿、主 KV、场景插画，建立「AI 创意→平面精修→3D 效果图」一体化工作流，
+        有效缩短品牌项目策划落地周期，熟悉广告公司项目对接、印刷落地、物料落地全流程。
+      </p>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="neo-card">
+      <div class="section-title">
+        <span class="icon">🛠</span> 专业技能
+      </div>
+      <div class="skill-grid">
+        <div class="skill-item">
+          <span class="skill-label">Photoshop <span>98%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill photoshop"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">Illustrator <span>95%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill illustrator"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">CorelDRAW <span>90%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill indesign"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">Figma <span>92%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill figma"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">SketchUp  / Blender <span>75%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill c4d"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">品牌策略 <span>96%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill branding"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">AIGC 设计 <span>85%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill uiux"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-label">团队管理 <span>88%</span></span>
+          <div class="skill-bar-track"><div class="skill-bar-fill team"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXPERIENCE TIMELINE ===== -->
+  <div class="neo-card">
+    <div class="section-title">
+      <span class="icon">💼</span> 工作经历
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-header">
+          <span class="exp-company">星辉品牌设计事务所</span>
+          <span class="exp-period">2020 — 至今</span>
+        </div>
+        <p class="exp-role">设计总监 / 合伙人</p>
+        <ul class="exp-details">
+          <li>创立独立设计工作室，服务客户包括腾讯、字节跳动、万科等一线品牌</li>
+          <li>主导品牌视觉体系搭建，累计交付品牌全案 60+，客户复购率超 85%</li>
+          <li>搭建并管理 10 人设计团队，建立标准化设计流程与质量控制体系</li>
+          <li>2023 年获得「深圳设计周」年度最佳品牌设计奖</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-header">
+          <span class="exp-company">奥美广告 Ogilvy · 深圳</span>
+          <span class="exp-period">2015 — 2020</span>
+        </div>
+        <p class="exp-role">资深美术指导</p>
+        <ul class="exp-details">
+          <li>负责华为、比亚迪等大客户的年度创意战役，主导视觉方向与执行</li>
+          <li>参与 pitch 项目 30+ 次，成功率超 70%，为公司带来千万级营收</li>
+          <li>指导 junior 设计师 6 人，建立内部设计评审与分享机制</li>
+          <li>作品入选「GDC 平面设计在中国」展</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-header">
+          <span class="exp-company">蓝色光标 BlueFocus · 北京</span>
+          <span class="exp-period">2012 — 2015</span>
+        </div>
+        <p class="exp-role">高级平面设计师</p>
+        <ul class="exp-details">
+          <li>负责联想、蒙牛等品牌的线上+线下全渠道视觉物料设计</li>
+          <li>设计规范文档沉淀，被集团内部推广为设计标准模板</li>
+          <li>年度产出设计稿 800+ 项，零重大设计事故</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-header">
+          <span class="exp-company">灵智广告 · 广州</span>
+          <span class="exp-period">2009 — 2012</span>
+        </div>
+        <p class="exp-role">平面设计师</p>
+        <ul class="exp-details">
+          <li>负责房地产、快消品行业的广告创意设计与执行</li>
+          <li>从助理设计师成长为独立项目负责人</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== QUOTE ===== -->
+  <div class="quote-block">
+    设计不是装饰，而是沟通。<br>好的视觉自己在说话，不好的才需要解释。
+  </div>
+
+  <!-- ===== TWO-COLUMN: PORTFOLIO + SERVICES ===== -->
+  <div class="two-col">
+    <!-- PORTFOLIO -->
+    <div class="neo-card">
+      <div class="section-title">
+        <span class="icon">🎯</span> 代表作品
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-thumb bg1">🏦</div>
+          <div class="portfolio-caption">华润银行品牌升级</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-thumb bg2">📱</div>
+          <div class="portfolio-caption">OPPO Find 系列视觉</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-thumb bg3">🎪</div>
+          <div class="portfolio-caption">深圳设计周主视觉</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-thumb bg4">🧋</div>
+          <div class="portfolio-caption">喜茶年度品牌活动</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-thumb bg5">🏢</div>
+          <div class="portfolio-caption">万科城市展厅设计</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-thumb bg6">🎵</div>
+          <div class="portfolio-caption">QQ音乐年度盛典</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="neo-card">
+      <div class="section-title">
+        <span class="icon">🚀</span> 服务范围
+      </div>
+      <div class="tag-cloud" style="margin-bottom:20px;">
+        <span class="neo-tag">品牌视觉设计</span>
+        <span class="neo-tag">LOGO / VI 系统</span>
+        <span class="neo-tag">包装设计</span>
+        <span class="neo-tag">海报与印刷品</span>
+        <span class="neo-tag">数字营销视觉</span>
+        <span class="neo-tag">电商页面设计</span>
+        <span class="neo-tag">展览与空间图形</span>
+        <span class="neo-tag">UI 视觉设计</span>
+        <span class="neo-tag">设计顾问咨询</span>
+        <span class="neo-tag">团队培训</span>
+      </div>
+
+      <div class="section-title">
+        <span class="icon">🏆</span> 荣誉与奖项
+      </div>
+      <ul class="exp-details">
+        <li>GDC 平面设计在中国 · 入选奖（2019）</li>
+        <li>深圳设计周 · 年度最佳品牌设计（2023）</li>
+        <li>站酷网 · 推荐设计师 / 人气作品 10w+</li>
+        <li>Adobe Certified Expert · Photoshop</li>
+        <li>中国广告长城奖 · 平面类银奖（2018）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== EDUCATION + LANGUAGES ===== -->
+ 
+
+  <!-- ===== FOOTER CTA ===== -->
+  <div class="footer-note">
+    ⚡ 寻求设计总监 / 创意合伙人机会 — 期待与你共创好设计！
+  </div>
+
+</div>
+
+</body>
+</html>
